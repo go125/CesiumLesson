@@ -21,3 +21,7 @@ docker-compose run --rm front sh -c "npm install -g create-react-app && create-r
 ```
 docker-compose up
 ```
+
+### アクセストークンの設定
+
+- 現状アクセストークンはindex.htmlに直接入力する必要があります。
