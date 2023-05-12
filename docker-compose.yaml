@@ -1,0 +1,8 @@
+services:
+  front:
+    build: ./react
+    volumes:
+      - ./react:/app:cached
+    command: sh -c "cd react-test && yarn start"
+    ports:
+      - "3000:3000"
