@@ -24,4 +24,4 @@ docker-compose up
 
 ### アクセストークンの設定
 
-- 現状アクセストークンはindex.htmlに直接入力する必要があります。
+- [設定方法](https://zenn.dev/lesserpanda/articles/2baa2f6eed690b)

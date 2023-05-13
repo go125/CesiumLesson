@@ -1,0 +1,4 @@
+// public内に設置
+const config = {  
+ apikey : "APIkeyを記述"  
+}
