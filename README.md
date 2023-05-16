@@ -25,3 +25,8 @@ docker-compose up
 ### アクセストークンの設定
 
 - [設定方法](https://zenn.dev/lesserpanda/articles/2baa2f6eed690b)
+
+## Google 3D Tile
+
+- [http://localhost:3000/index2.html]からアクセス可能です。
+- Google API Keyは現在手入力が必要です。
