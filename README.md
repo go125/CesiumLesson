@@ -28,6 +28,6 @@ docker-compose up
 
 ## Google 3D Tile
 
-- [http://localhost:3000/index2.html]からアクセス可能です。
+- docker起動の上、[こちら](http://localhost:3000/index2.html)からアクセス可能です。
 - Google API Keyは現在手入力が必要です。
     - Google API Keyの利用はIIS VPN経由に制限しています。
