@@ -1,0 +1,9 @@
+services:
+  front:
+    build: ./react
+    tty: true
+    volumes:
+      - ./react:/app:cached
+    # デフォルトの3000ポートを使う
+    ports:
+      - "3000:3000"
