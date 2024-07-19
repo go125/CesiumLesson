@@ -1,8 +1,0 @@
-services:
-  front:
-    build: ./react
-    tty: true
-    volumes:
-      - ./react:/app:cached
-    ports:
-      - "3000:3000"

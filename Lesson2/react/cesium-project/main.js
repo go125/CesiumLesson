@@ -1,5 +1,7 @@
 (function() {
     "use strict";
+    const CESIUM_API_KEY = config.apikey;
+    Cesium.Ion.defaultAccessToken = CESIUM_API_KEY;
   
     var viewer = new Cesium.Viewer("cesium");
   

@@ -1,33 +1,20 @@
-# React
+# Dockerを用いた環境構築
 
-- Cesiumとの連携方法は検討中であるが、難易度が高いと思われる
+## 起動
 
-## Execution
-
-### コンテナ起動
+## コンテナへの接続
 
 ```
-docker-compose up -d
+docker compose up -d
+docker compose exec front bash
 ```
 
-## コンテナへの接続(フロント)
+## アプリケーションの起動
 
 ```
-docker compose exec front sh
+cd src/front
+pip install -r requirements.txt
+streamlit run app.py --server.port 5000
 ```
 
-## npm install
-
-- 初回のみ実施する
-
-```
-cd react-basic
-npm install
-npm install cesium@1.82
-```
-
-## アプリ起動
-
-```
-npm start
-```
+- Cesiumの表示は困難。

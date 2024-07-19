@@ -1,0 +1,11 @@
+version: '0.1'
+services:
+  front:
+    build: ./front
+    container_name: 'shinjukuchat_front'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ../src/front:/root/src/front
+    ports:
+      - "5000:5000"
