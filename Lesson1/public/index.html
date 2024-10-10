@@ -11,8 +11,15 @@
   <script>
     // Get your token from https://cesium.com/ion/tokens
     const CESIUM_API_KEY = config.apikey;
-    Cesium.Ion.defaultAccessToken = CESIUM_API_KEY;
-    const viewer = new Cesium.Viewer('cesiumContainer');
+	// A. トークンを設定
+    Cesium.Ion.defaultAccessToken = config.defaultAccessToken;
+    // B. terrainProviderを設定
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrainProvider: new Cesium.CesiumTerrainProvider({
+          url: Cesium.IonResource.fromAssetId(770371)
+      })
+    }
+    );
     //建物モデルの追加
     var your_3d_tiles =viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
       url : 'https://plateau.geospatial.jp/main/data/3d-tiles/bldg/13100_tokyo/13104_shinjuku-ku/low_resolution/tileset.json'
