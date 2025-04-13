@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone PID Simulator</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/build/dat.gui.min.js"></script>
+
+<script>
+    // Three.js scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Simple plane as ground
+    const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(200, 200),
+        new THREE.MeshBasicMaterial({ color: 0x88cc88, side: THREE.DoubleSide })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
+
+    // Drone representation
+    const drone = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 0.2, 1),
+        new THREE.MeshBasicMaterial({ color: 0x8888ff })
+    );
+    drone.position.y = 1;
+    scene.add(drone);
+
+    camera.position.set(0, 5, 10);
+    camera.lookAt(drone.position);
+
+    // PID Controller parameters
+    const params = { Kp: 1.0, Ki: 0.0, Kd: 0.1, targetY: 5.0 };
+
+    // PID control variables
+    let error = 0, prevError = 0, integral = 0, dt = 0.1;
+
+    // Function to update drone position based on PID control
+    function updateDrone() {
+        error = params.targetY - drone.position.y;
+        integral += error * dt;
+        const derivative = (error - prevError) / dt;
+        const output = params.Kp * error + params.Ki * integral + params.Kd * derivative;
+
+        // Update drone position
+        drone.position.y += output * dt;
+        prevError = error;
+    }
+
+    // Dat.GUI setup
+    const gui = new dat.GUI();
+    gui.add(params, 'Kp', 0, 10).name('Proportional');
+    gui.add(params, 'Ki', 0, 1).name('Integral');
+    gui.add(params, 'Kd', 0, 1).name('Derivative');
+    gui.add(params, 'targetY', 0, 10).name('Target Height');
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        updateDrone();
+        renderer.render(scene, camera);
+    }
+
+    animate();
+</script>
+</body>
+</html>
