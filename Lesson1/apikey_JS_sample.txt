@@ -1,5 +1,0 @@
-// public内に設置
-const config = {  
- apikey : "APIkeyを記述",
- defaultAccessToken : "Cesiumのデフォルトアクセストークンを記述"  
-}
